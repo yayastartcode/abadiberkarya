@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
-import { Button } from './ui/button'
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Beranda', href: '#hero' },
-    { name: 'Layanan', href: '#services' },
-    { name: 'Galeri', href: '#gallery' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Kontak', href: '#contact' },
-  ]
+    { name: "Beranda", href: "/" },
+    { name: "Layanan", href: "#services" },
+    { name: "Galeri", href: "#gallery" },
+    { name: "FAQ", href: "#faq" },
+    { name: "Kontak", href: "#contact" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
@@ -19,9 +19,9 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src="/cvabdlg.png" 
-              alt="Konstruksi Indonesia Logo" 
+            <img
+              src="/cvabdlg.png"
+              alt="Konstruksi Indonesia Logo"
               className="h-20"
             />
           </div>
@@ -65,5 +65,5 @@ export default function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }

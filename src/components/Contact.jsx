@@ -13,9 +13,11 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      "Terima kasih! Pesan Anda telah diterima. Kami akan segera menghubungi Anda."
-    );
+    const phoneNumber = "6282278540107";
+    const whatsappMessage = `Halo, saya ingin konsultasi mengenai proyek konstruksi.\n\nNama: ${formData.name}\nEmail: ${formData.email}\nPesan: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    window.open(whatsappUrl, '_blank');
     setFormData({ name: "", email: "", message: "" });
   };
 

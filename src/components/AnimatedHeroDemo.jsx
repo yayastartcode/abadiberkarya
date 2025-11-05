@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function AnimatedHeroDemo() {
   const navLinks = [
-    { label: "Beranda", href: "#hero" },
+    { label: "Beranda", href: "/" },
     { label: "Layanan", href: "#services" },
     { label: "Galeri", href: "#gallery" },
     { label: "FAQ", href: "#faq" },
