@@ -36,10 +36,8 @@ export default function AnimatedHeroDemo() {
           Hubungi Kami
         </Button>
       }
-      title="Jasa Kontraktor Bangunan & Drainase Profesional dan Terpercaya"
-      description="Solusi konstruksi dan drainase terpercaya di Indonesia, dengan
-          pengalaman luas dalam proyek bangunan komersil, perumahan, dan
-          infrastruktur."
+      title="Solusi Konstruksi Professional di Indonesia"
+      description="Melayani pembangunan Gedung, Rumah dan Infrastruktur dengan kualitas terbaik."
       ctaButton={{
         text: "Lihat Layanan",
         onClick: handleCtaClick,
