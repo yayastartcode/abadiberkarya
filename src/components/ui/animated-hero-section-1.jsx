@@ -40,6 +40,21 @@ export const AnimatedHero = ({
   className,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  // Track scroll position
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Define the new reusable glass button style
   const glassButtonClassName =
@@ -63,7 +78,12 @@ export const AnimatedHero = ({
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute top-0 left-0 right-0 z-20 w-full text-white"
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300",
+          isScrolled 
+            ? "bg-white shadow-md text-gray-900" 
+            : "bg-transparent text-white"
+        )}
       >
         <div className="flex h-20 w-full max-w-7xl mx-auto items-center justify-between px-6 md:px-12">
           <div className="flex items-center gap-2">{logo}</div>
@@ -72,7 +92,12 @@ export const AnimatedHero = ({
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  isScrolled
+                    ? "text-gray-700 hover:text-blue-600"
+                    : "text-primary-foreground/80 hover:text-primary-foreground"
+                )}
               >
                 {link.label}
               </a>
@@ -82,7 +107,10 @@ export const AnimatedHero = ({
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className={cn(
+              "md:hidden transition-colors",
+              isScrolled ? "text-gray-900" : "text-white"
+            )}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -96,21 +124,34 @@ export const AnimatedHero = ({
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-black/80 backdrop-blur-md"
+            className={cn(
+              "md:hidden backdrop-blur-md",
+              isScrolled 
+                ? "bg-white/95 border-t border-gray-200" 
+                : "bg-black/80"
+            )}
           >
             <div className="flex flex-col gap-4 px-6 py-4 max-w-7xl mx-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm font-medium text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+                  className={cn(
+                    "text-sm font-medium transition-colors",
+                    isScrolled
+                      ? "text-gray-700 hover:text-blue-600"
+                      : "text-primary-foreground/80 hover:text-primary-foreground"
+                  )}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
               {topRightAction && (
-                <div className="pt-2 border-t border-white/20">
+                <div className={cn(
+                  "pt-2 border-t",
+                  isScrolled ? "border-gray-200" : "border-white/20"
+                )}>
                   {topRightAction}
                 </div>
               )}
